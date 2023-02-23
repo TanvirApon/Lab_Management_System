@@ -1,10 +1,7 @@
 # Lab_Management_System
 
-# Project Title: Develop a computer lab management application using Python
-
 # Project Overview:
-
-# Each lab contains a number of PC. So, for maintaining the lab you should keep record about all the PCs of the lab.
+Each lab contains a number of PC. So, for maintaining the lab you should keep record about all the PCs of the lab.
 Therefore, the application should contain the following information and features:
 
 - Each PC should have the information like PC number, operating system installed in the PC, and status of the PC.
