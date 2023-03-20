@@ -1,182 +1,122 @@
-import csv
+import json
 
 '''Computer Lab Management Application using Python'''
 
+
+
+
+#Add the PC Details in JSON file
 def Add_PC():
     '''This Function is for Adding A PC Information'''
-    with open('pc_record.csv','r') as file:
-        csv_dict = [row for row in csv.DictReader(file)]
-        if len(csv_dict)==0:
-            print("\n")
-            print("--------------------------Instructions-----------------------------")
-            print("Please remember to input Number while you input the PC Number.")
-            print("Please remember to input WORD while you input the PC OS and Status.")
-            print("If you don't follow the above instruction it will give you an error.")
-            print("--------------------------------------------------------------------\n")
-            n=int(input("Enter the number of pc you want to input:"))
-            #data rows as dictionary objects
-            pc={
-            "PC-Number":"",
-            "OS-Installed":"",
-            "PC-Status":"",
-            }
+    print("\n")
+    print("--------------------------Instructions-----------------------------")
+    print("Please remember to input Number while you input the PC Number.")
+    print("Please remember to input WORD while you input the PC OS and Status.")
+    print("If you don't follow the above instruction it will give you an error.")
+    print("--------------------------------------------------------------------\n") 
+    
+    pc_num=str(input("Enter the number of the pc: "))
+    check(pc_num)
+    pos=str(input("Enter the os name install in pc: "))
+    pstatus=str(input("Enter the status of the pc: ")) 
      
-            #fields names
-            field =['PC-Number','OS-Installed','PC-Status'] 
-            #name of csv file
-            for i in range(n):
-                pc_num=str(input("Enter the number of the pc: "))
-                pc_os=str(input("Enter the os name install in pc: "))
-                pc_status=str(input("Enter the status of the pc: "))
+    pc={
+        
+        "pc-number: ":pc_num,
+        "pc-os: " :pos,
+        "pc-status: ":pstatus     
+    }
+    
+    with open("pc_record.json","r") as getdata:
+        data = json.load(getdata)
+        
+        data[pc_num]=pc
+        
+        with open("pc_record.json","w") as save:
+            json.dump(data, save)
+            print("Data Stored")
             
-            pc["PC-Number"]=pc_num
-            pc["OS-Installed"]=pc_os
-            pc["PC-Status"]=pc_status
-        
-            with open("pc_record.csv","r+")as file:
-             d_writer=csv.DictWriter(file,fieldnames=field)
-             d_writer.writeheader()
-             d_writer.writerow(pc)
-             print("Data Stored\n")
-        
-        else:
-             n=int(input("Enter the number of pc you want to input:"))
-             #data rows as dictionary objects
-             pc={
-             "PC-Number":"",
-             "OS-Installed":"",
-             "PC-Status":"",
-              }
-     
-            #fields names
-             field =['PC-Number','OS-Installed','PC-Status'] 
-             #name of csv file
-             filenames="pc_record.csv" 
-             for i in range(n):
-                 pc_num=int(input("Enter the number of the pc: "))
-                 pc_os=str(input("Enter the os name install in pc: "))
-                 pc_status=str(input("Enter the status of the pc: "))
-            
-             pc["PC-Number"]=pc_num
-             pc["OS-Installed"]=pc_os
-             pc["PC-Status"]=pc_status
-        
-             with open("pc_record.csv","a")as file:
-              p_writer=csv.DictWriter(file,fieldnames=field)
-              p_writer.writerow(pc)
-              print("Data Stored\n")
-     
-              
-              
-    
-    
-    
 
+#Update the PC-OS and PC-Status
 def Update_PC():
     '''This Function is for Updating the PC Information'''
-    file=open('pc_record.csv','r')
-    Reader=csv.DictReader(file)
-    dict={}
-    s=int(input("Enter the pc-number you want to update:"))
-    found=False
-    for item in Reader:
-        if item['PC-Number']==str(s):
-            found=True
-            pc_os=str(input("Enter the os name install in pc: "))
-            pc_status=str(input("Enter the status of the pc: "))
-            item['OS-Installed']=pc_os
-            item['PC-Status']=pc_status
-        dict.append(item)
-    file.close()
-    if found:
-        print("No Data Found !!!!")          
+    no=input("Enter the pc number: ")
+    with open("pc_record.json","r") as getdata:
+        data=json.load(getdata)
+        if no in data:
+            pos=str(input("Enter the os name install in pc: "))
+            pstatus=str(input("Enter the status of the pc: "))
             
-    else:
-        file=open('pc_record.csv','w+',newline='')
-        Writer=csv.writer(file)
-        Writer.writerows(lst)
-        file.seek(0)
-        Reader=csv.reader(file)
-        for row in Reader:
-            print(row)
-        file.close()           
-               
+            pc={
+                "pc-number: ":no,
+                "pc-os: " :pos,
+                "pc-status: ":pstatus    
+            }
             
-           
-    
-    
-                    
-                            
-            
-            
-    
-    
+            data[no]=pc
+            with open("pc_record.json","w")as update:
+                json.dump(data, update)
+                print("Updated Data") 
+                   
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#Remove a specific PC
 def Remove_PC():
+    Display_All_PC()
     '''This Function is for Removing the PC Information'''
+    no=input("Enter the pc number: ")
+    
+    with open("pc_record.json","r") as getdata:
+        data = json.load(getdata)
+        if no in data:
+            data.pop(no)
+            
+            with open("pc_record.json","w") as delete:
+                data1=json.dump(data, delete)
+                print("Data Deleted")
+                
+        else:
+            print("No data found !")
+      
     
     
-    
-    
-    
-    
-    
-    
+#Display All the PC
 def Display_All_PC():
     '''This Function is for Displaying All PC Information'''
-    try:
-        with open("pc_record.csv","r")as file:
-            d_reader = csv.DictReader(file)
-            for i in d_reader:
-                print("PC-Number: ",i["PC-Number"])
-                print("PC-OS: ",i["OS-Installed"])
-                print("PC-Status: ",i["PC-Status"])
-                print("\n")
-        
-    except EOFError:
-        print("No record found !!!") 
-        
-         
+    with open('pc_record.json','r')as view:
+        data=json.load(view) 
+        for i,m in data.items():
+            for x,n in m.items():
+                print(x,n)
+            print("\n")
+                
+   
+
+#Check the pc number is already taken or not
+def check(pc_num):
+    '''This function is for checking pc number'''
+    
+    with open("pc_record.json","r") as getdata:
+        data = json.load(getdata)
+        for i,m in data.items():
+            if i == pc_num:
+                print("Pc Number already exits")
+                Add_PC()
 
 
 
-
-
-
-
-
-
+#Display Specific PC
 def Display_PC():
     '''This Function is for Displaying a specific PC Information'''
-
-
-
-
-
-
-
-
-
-
-
-
-
+    no=input("Enter the pc number: ")
+    with open("pc_record.json","r") as getdata:
+        data = json.load(getdata)
+        for i,m in data.items():
+            if i == no:
+                for x,n in m.items():
+                    print(x,n)
+                print("\n") 
+                       
 
 
 #Option Functionality
@@ -216,8 +156,6 @@ def Option():
     
      else:
          print("Please input a legal action as described above") 
-
-
 
 
 
