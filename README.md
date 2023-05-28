@@ -1,10 +1,10 @@
 # Lab Management System
 
-The Lab Management System is a console-based application designed to maintain records and manage PCs in a lab. It allows users to store and retrieve information about each PC, including PC number, operating system, and status. The application provides functionalities such as adding, updating, removing, and searching for PCs, as well as displaying information about all the PCs in the lab.
+The Lab Management System is a console-based application designed to maintain records and manage PCs in a lab. It allows users to store and retrieve information about each PC, including PC number, installed operating system, and status. The application provides functionalities such as adding, updating, and removing PCs, as well as displaying information about all the PCs in the lab.
 
 ## Features
 
-- PC Information: Each PC in the lab has details such as PC number, installed operating system, and status.
+- PC Information: Each PC in the lab has details such as PC number, operating system, and status.
 
 - Add PC: Users can add a new PC to the lab by entering the required information.
 
@@ -20,15 +20,15 @@ The Lab Management System is a console-based application designed to maintain re
 
 - Checking Functionality: When adding a new PC, the application ensures that no duplicate PC numbers are entered. If a duplicate PC number is detected, the user is prompted to modify the existing PC information, remove the PC from the lab, or take no action.
 
-- Store Functionality: The application offers the option to store all the PC information into a text file, allowing users to maintain a physical copy of the data on their hard drive.
+- Store Functionality: The application offers the option to store all the PC information into a text file if the user wants to maintain a physical copy on their hard drive.
 
 ## Usage
 
 To use the Lab Management System, follow these steps:
 
 1. Clone the repository to your local machine using Git or download it as a ZIP file.
-2. Open the project in a C++ integrated development environment (IDE) such as Visual Studio or Code::Blocks.
-3. Build and run the project to launch the application.
+2. Open the project in a Python IDE or editor of your choice.
+3. Run the main Python file to launch the application.
 4. The application will display a menu with available options. Follow the on-screen instructions to perform desired actions such as adding, updating, removing, or searching for PCs.
 5. Use the appropriate menu options to display information about all the PCs or view details of a specific PC.
 6. If necessary, store the PC information into a text file by selecting the store functionality.
