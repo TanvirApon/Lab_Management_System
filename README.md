@@ -1,6 +1,6 @@
 # Lab Management System
 
-The Lab Management System is a console-based application designed to maintain records and manage PCs in a lab. It allows users to store and retrieve information about each PC, including PC number, installed operating system, and status. The application provides functionalities such as adding, updating, and removing PCs, as well as displaying information about all the PCs in the lab.
+The Lab Management System is a console-based application designed to maintain records and manage PCs in a lab. It allows users to store and retrieve information about each PC, including PC number, installed operating system, and status. The application provides functionalities such as adding, updating, and removing PCs, as well as displaying information about all the PCs.
 
 ## Features
 
